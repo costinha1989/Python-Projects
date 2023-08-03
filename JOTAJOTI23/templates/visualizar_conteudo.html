@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualizar Conteúdo</title>
+</head>
+<body>
+<h1>Visualizar Conteúdo</h1>
+<table>
+    <tr>
+        <th>JID</th>
+        <th>Localidade</th>
+        <th>Cidade</th>
+        <th>País</th>
+        <th>Grupo</th>
+        <th>Divisão</th>
+    </tr>
+    {% for loc in locations %}
+    <tr>
+        <td>{{ loc['JID'] }}</td>
+        <td>{{ loc['Localidade'] }}</td>
+        <td>{{ loc['Cidade'] }}</td>
+        <td>{{ loc['País'] }}</td>
+        <td>{{ loc['Grupo'] }}</td>
+        <td>{{ loc['Divisão'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{{ url_for('pagina_inicial') }}">Voltar ao Menu Principal</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- visualizar_mapa.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualizar Mapa</title>
+</head>
+<body>
+{% if locations %}
+<h1>Mapa de Localizações</h1>
+<div id="map"></div>
+<script>
+        // código JavaScript para exibir o mapa usando a biblioteca folium
+
+</script>
+{% else %}
+<p>{{ error_msg }}</p>
+{% endif %}
+<br>
+<a href="{{ url_for('pagina_inicial') }}">Voltar ao Menu Principal</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "users": [
+    {"username": "admin", "password": "admin"},
+    {"username": "crao", "password": "crao"},
+    {"username": "grupo39", "password": "aep39%"},
+    {"username": "grupo63", "password": "aep63%"},
+    {"username": "grupo80", "password": "aep80%"},
+    {"username": "grupo97", "password": "aep97%"},
+    {"username": "grupo111", "password": "aep111%"},
+    {"username": "grupo126", "password": "aep126%"},
+    {"username": "grupo137", "password": "aep137%"},
+    {"username": "grupo186", "password": "aep186%"},
+    {"username": "grupo193", "password": "aep193%"},
+    {"username": "grupo227", "password": "aep227%"}
+   ]
+}
