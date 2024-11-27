@@ -14,8 +14,8 @@ Sistema de e-mail utilizado foi o mailtrap (https://mailtrap.io/home), corrigir 
 
     MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
     MAIL_PORT = 2525
-    MAIL_USERNAME = 'colocar-o-username-fornecido'
-    MAIL_PASSWORD = 'colocar-a-password-fornecida'
+    MAIL_USERNAME = 'ef8df689f9493a' Mudar o username mediante a conta
+    MAIL_PASSWORD = 'c59f7a02d9fb5f' Mudar a password mediante a conta
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
 

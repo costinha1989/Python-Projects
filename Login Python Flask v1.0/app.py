@@ -69,6 +69,7 @@ def reset_password():
             msg.sender = Config.MAIL_USERNAME
             mail.send(msg)
             flash('Pedido enviado.', 'info')
+            return redirect(url_for('login'))
         else:
             flash('Utilizador não encontrado!', 'error')
     return render_template('reset_password.html')
