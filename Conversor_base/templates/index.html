@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Bases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Bases</h1>
+
+        <form method="POST" action="/">
+            <label for="base_origem">Base de Origem:</label>
+            <select id="base_origem" name="base_origem" required>
+                <option value="" disabled selected>Escolha a base</option>
+                <option value="2">Binário (Base 2)</option>
+                <option value="8">Octal (Base 8)</option>
+                <option value="10">Decimal (Base 10)</option>
+                <option value="16">Hexadecimal (Base 16)</option>
+            </select>
+
+            <label for="numero">Número:</label>
+            <input type="text" id="numero" name="numero" required placeholder="Digite o número">
+
+            <label for="base_destino">Base de Destino:</label>
+            <select id="base_destino" name="base_destino" required>
+                <option value="" disabled selected>Escolha a base</option>
+                <option value="2">Binário (Base 2)</option>
+                <option value="8">Octal (Base 8)</option>
+                <option value="10">Decimal (Base 10)</option>
+                <option value="16">Hexadecimal (Base 16)</option>
+            </select>
+
+            <button type="submit">Converter</button>
+        </form>
+    </div>
+
+    <!-- O Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-message"></p>
+            <div class="button-container">
+                <button id="ok-button">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para mostrar o modal com a mensagem
+        function mostrarModal(mensagem) {
+            if (mensagem) {
+                document.getElementById('modal-message').innerText = mensagem;
+                var modal = document.getElementById('myModal');
+                modal.style.display = 'block';
+            }
+        }
+
+        // Quando o usuário clica no "x", o modal fecha
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        // Quando o usuário clica no botão "OK", o modal fecha
+        document.getElementById('ok-button').onclick = function() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        // Mostrar o modal se houver uma mensagem de resultado
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if resultado %}
+                mostrarModal('O número {{ numero }} na base {{ base_origem }} convertido para a base {{ base_destino }} é: {{ resultado }}');
+            {% elif resultado == "Número ou base de origem inválida!" %}
+                mostrarModal('{{ resultado }}');
+            {% endif %}
+        });
+    </script>
+</body>
+</html>
