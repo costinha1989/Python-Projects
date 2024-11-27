@@ -68,7 +68,7 @@ def reset_password():
             msg.body = f"O utilizador '{username}' solicitou a redefinição de senha."
             msg.sender = Config.MAIL_USERNAME
             mail.send(msg)
-            flash('Pedido enviado.', 'info')
+            flash('Pedido solicitado à equipa de suporte. Aguarde resposta no seu e-mail utilizado.', 'info')
             return redirect(url_for('login'))
         else:
             flash('Utilizador não encontrado!', 'error')
