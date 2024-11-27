@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Registos - Jota-Joti 2024</title>
+    <style>
+        /* Ajustes para a tabela */
+        table {
+            width: 75%;
+            margin: 20px auto;  /* Altera para auto para centralizar horizontalmente */
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <script>
+        function atualizarRegistos() {
+            fetch('/api/registos')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta da rede: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Dados recebidos:", data); // Log para verificar os dados
+                    if (data.error) {
+                        console.error("Erro ao carregar registos:", data.error);
+                        return;
+                    }
+
+                    const tbody = document.querySelector('table tbody');
+                    tbody.innerHTML = ''; // Limpa o corpo da tabela
+
+                    if (data.length === 0) {
+                        console.log("Nenhum registo encontrado.");
+                        return;
+                    }
+
+                    // Popula a tabela com os novos dados
+                    data.forEach(registo => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${registo['Canal utilizado'] || 'N/A'}</td>
+                            <td>${registo['JID'] || 'N/A'}</td>
+                            <td>${registo['Localidade'] || 'N/A'}</td>
+                            <td>${registo['País'] || 'N/A'}</td>
+                            <td>${registo['Grupo'] || 'N/A'}</td>
+                            <td>${registo['Divisão'] || 'N/A'}</td>
+                            <td>${registo['Timestamp'] || 'N/A'}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Erro na requisição AJAX:', error));
+        }
+
+        setInterval(atualizarRegistos, 10000);
+        window.onload = atualizarRegistos;
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.jotajoti.it/wp-content/uploads/2024/07/Logo-JOTAJOTI24_Hor_1.0-1024x395.png" alt="Jota Joti 2024 Logo">
+        </div>
+        <nav>
+           <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/registos">Registos</a></li>
+                <li><a href="/mapa">Mapa</a></li>
+                <li><a href="/webchat">Webchat</a></li>
+                <li><a href="/conversor">Conversor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Registos</h1>
+            <p>Registos realizados durante a atividade JOTA-JOTI 2024.</p>
+            <br></br>
+
+            <!-- Tabela melhor formatada -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Canal Utilizado</th>
+                        <th>Indicativo/JID</th>
+                        <th>Localidade</th>
+                        <th>País</th>
+                        <th>Grupo</th>
+                        <th>Divisão</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registo in registos %}
+                    <tr>
+                        <td>{{ registo['Canal utilizado'] }}</td>
+                        <td>{{ registo['JID'] }}</td>
+                        <td>{{ registo['Localidade'] }}</td>
+                        <td>{{ registo['País'] }}</td>
+                        <td>{{ registo['Grupo'] }}</td>
+                        <td>{{ registo['Divisão'] }}</td>
+                        <td>{{ registo['Timestamp'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Escoteiros de Portugal - Região Açores Oriental 2024.</p>
+    </footer>
+</body>
+</html>
