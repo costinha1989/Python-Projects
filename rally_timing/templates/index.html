@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Cronometragem de Rallyes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Registo de Chegadas</h1>
+    <form id="form-registo">
+        <input type="number" id="numero" placeholder="Número do Concorrente" required><br>
+        <input type="text" id="chegada" placeholder="Hora de Chegada (HH:MM:SS)" required><br>
+        <input type="text" id="partida" placeholder="Hora de Partida (HH:MM:SS)" required><br>
+        <button type="button" onclick="adicionarRegisto()">Adicionar Registo</button>
+    </form>
+
+    <h2>Registos Atuais:</h2>
+    <pre id="registos"></pre>
+
+    <h2>Exportar Registos:</h2>
+    <button type="button" onclick="exportarPDF()">Exportar para PDF</button>
+
+    <script>
+        async function adicionarRegisto() {
+            const numero = document.getElementById('numero').value;
+            const chegada = document.getElementById('chegada').value;
+            const partida = document.getElementById('partida').value;
+
+            // Verificar se todos os campos têm valor
+            if (!numero || !chegada || !partida) {
+                alert('Todos os campos devem ser preenchidos.');
+                return;
+            }
+
+            // Enviar dados para o backend
+            const response = await fetch('/api/add', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({numero, chegada, partida})
+            });
+            const result = await response.json();
+            alert(result.message);
+            carregarRegistos();
+        }
+
+        async function carregarRegistos() {
+            const response = await fetch('/api/registos');
+            const data = await response.json();
+            document.getElementById('registos').textContent = JSON.stringify(data, null, 4);
+        }
+
+        async function exportarPDF() {
+            const response = await fetch('/api/export/pdf');
+            const result = await response.json();
+            alert(result.message);
+        }
+
+        carregarRegistos();
+    </script>
+</body>
+</html>
