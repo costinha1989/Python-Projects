@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container">
@@ -12,5 +14,22 @@
         <p>Esta é a página principal protegida.</p>
         <a href="{{ url_for('logout') }}">Sair</a>
     </div>
+
+    <script>
+    // Exibe os pop-ups SweetAlert
+    document.addEventListener('DOMContentLoaded', function () {
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                Swal.fire({
+                    icon: "{{ category }}",  // Pode ser "success", "error", ou "warning"
+                    title: "{{ 'Erro' if category == 'error' else 'Mensagem' }}",
+                    text: "{{ message }}",
+                });
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    });
+    </script>
 </body>
 </html>

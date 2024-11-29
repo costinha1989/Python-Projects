@@ -34,6 +34,7 @@ def validate_session():
             flash("Acesso restrito. Se não tiver acesso, contacte a equipa de suporte em suportecrao@gmail.com. Obrigado.", "warning")
             return redirect(url_for('login'))
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Página de login."""
@@ -46,10 +47,15 @@ def login():
             session['user_id'] = user.id
             session['expires_at'] = (datetime.now(pytz.utc) + timedelta(minutes=10)).isoformat()
             session.permanent = True  # Sessão será gerida pelo `app.permanent_session_lifetime`
+
+            # Flash de boas-vindas
+            flash(f'Bem-vindo(a), {username}!', 'success')
+
             return redirect(url_for('dashboard'))
         else:
             flash('Utilizador e/ou senha incorretos.', 'error')
     return render_template('login.html')
+
 
 @app.route('/dashboard')
 def dashboard():
