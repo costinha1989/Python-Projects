@@ -1,0 +1,216 @@
+/* Geral */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Layout */
+.dashboard {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #0056b3;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Move conteúdo para o topo */
+    padding: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 20px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #004494;
+    border-radius: 5px;
+}
+
+.sidebar .footer {
+    padding: 80px 20px;
+    border-top: 1px solid #004494;
+    text-align: center;
+    font-size: 14px;
+}
+
+.sidebar .footer p {
+    margin: 0;
+    color: #d1e7ff;
+}
+
+.sidebar .footer a {
+    color: #d1e7ff;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    display: block;
+}
+
+/* Conteúdo principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px;
+    margin-top: 30px; /* Ajustável para regular a posição do formulário */
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #0056b3;
+    color: #fff;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td {
+    color: #333;
+}
+
+/* Tipografia */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+p {
+    color: #555;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    width: 80%; /* Ajuste para ser mais curto */
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px auto; /* Centraliza no eixo horizontal */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Garantir que o botão esteja alinhado ao centro */
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Links */
+a {
+    text-align: center;
+    margin-top: 15px;
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Listas */
+ul {
+    padding: 0;
+    margin: 10px 0 0;
+    list-style-type: none;
+}
+
+li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+li.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+li.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+li.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Container principal */
+.container {
+    width: 90%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+

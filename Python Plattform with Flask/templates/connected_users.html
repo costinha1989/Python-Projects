@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilizadores Ligados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Barra Lateral -->
+        <nav class="sidebar">
+            <!-- Logotipo no topo -->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logotipo" class="logo">
+
+            <!-- Itens do menu -->
+            <ul>
+                <li><a href="{{ url_for('dashboard') }}">Início</a></li>
+                <li><a href="{{ url_for('connected_users') }}">Utilizadores ligados</a></li>
+                <li><a href="{{ url_for('handle_reset') }}">Reset senhas conta</a></li>
+                <li><a href="{{ url_for('create_user') }}">Criação Utilizadores</a></li>
+                <li><a href="{{ url_for('logout') }}" id="logout-button">Sair</a></li>
+            </ul>
+            <div class="footer">
+                <p>Bem-vindo, <span id="username">{{ current_user.username }}</span></p>
+            </div>
+        </nav>
+
+        <!-- Conteúdo Principal -->
+        <div class="main-content">
+            <h1>Utilizadores Ligados</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome de Utilizador</th>
+                        <th>Última Atividade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.last_active.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
